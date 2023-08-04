@@ -6,8 +6,18 @@ import {
   limparCarrinho
 } from '@/_data/carrinho.js'
 import MButton from './MButton.vue'
-import carrinhoVazio from './carrinhoVazio.vue'
+import { ref } from 'vue'
 
+const nome = ref('')
+const data = ref('')
+const email = ref('')
+const senha = ref('')
+const confirma = ref('')
+
+const endereco = ref('')
+const cidade = ref('')
+
+const mostrar = ref(false)
 
 function formatarPreco(preco) {
   return 'R$' + preco.toFixed(2).replace('.', '.')
@@ -34,12 +44,7 @@ function formatarPreco(preco) {
               <div>
                 <p>
                   qtde:
-                  <input
-                    type="number"
-                    v-model="item.quantidade"
-                    @change="atualizaQuantidadeItem(item)"
-                    min="1"
-                  />
+                  <input type="number" v-model="item.quantidade" @change="atualizaQuantidadeItem(item)" min="1" />
                 </p>
                 <button @click="removerItemCarrinho(item)">&#128465;</button>
                 <p>total:{{ formatarPreco(item.total) }}</p>
@@ -49,51 +54,95 @@ function formatarPreco(preco) {
         </div>
         <m-button @click="limparCarrinho()" text="Limpar carrinho" />
 
-       
-    <button type="button" class="btn btn-primary p-3 mt-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Finalizar compra
-    </button>
-    <hr>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Seus dados</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-          <form>
-            <div>
-          <h4>Informe seu nome:</h4>
-          <input type="text" class="input-balao-up" v-model="nome" v-on:keypress="enviar = false" placeholder="Digite seu nome..." required />
+        <button type="button" class="btn btn-primary p-3 mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Finalizar compra
+        </button>
+        <hr />
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Seus dados</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div>
+                    <label for="text">Nome: </label>
+                    <input type="text" v-on:keypress="ok = false" v-model="nome" required placeholder="digite seu nome" />
+                    <br />
 
-        </div>
-          </form>
+                    <br />
+
+                    <form @submit.prevent="">
+                      <label for="date">Data de nascimento: </label>
+                      <input type="date" v-on:keypress="ok = false" v-model="data" required
+                        placeholder="data de nascimento" />
+                      <br />
+
+                      <br />
+                      <label for="text">endereço: </label>
+                      <input type="text" v-on:keypress="ok = false" v-model="endereco" required
+                        placeholder="Digite seu endereço" /><br />
+
+                      <br />
+                      <label for="text">cidade: </label>
+                      <input type="text" v-on:keypress="ok = false" v-model="cidade" required
+                        placeholder="Digite sua cidade" /><br />
+
+                      <br />
+
+                      <label for="email">Email: </label>
+                      <input type="email" v-on:keypress="ok = false" v-model="email" required
+                        placeholder="digite seu email" />
+                      <br />
+
+                      <br />
+
+                      <label for="password">senha: </label>
+                      <input type="password" v-on:keypress="ok = false" v-model="senha" required
+                        placeholder="digite sua senha" /><br />
+
+                      <br />
+                      <label for="password">confirmação de senha: </label>
+                      <input type="password" v-on:keypress="ok = false" v-model="confirma" required
+                        placeholder="digite novamente" /><br />
+
+                      <br />
+
+                      
+                    </form>
+                    <template> </template>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button @click="limparCarrinho" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Fechar
+                </button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">
+                  concluido
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button @click="limparCarrinho" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button @click="limparCarrinho" type="button" class="btn btn-warning" data-bs-dismiss="modal">concluido</button>
-          </div>
         </div>
+
+        <!-- 1 -->
       </div>
     </div>
-        
-        <!-- 1 -->
-        </div>
-    </div>
-</div>
-
+  </div>
 </template>
 
 <style scoped>
-
 .wrap-carrinho .carrinho-total {
   position: fixed;
   bottom: 3%;
   font-size: 1.5rem;
   font-weight: bold;
 }
+
 .item-carrinho .info-livro {
   display: flex;
   margin-bottom: 10px;
