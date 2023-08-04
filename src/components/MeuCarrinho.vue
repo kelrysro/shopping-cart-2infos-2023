@@ -13,10 +13,8 @@ const data = ref('')
 const email = ref('')
 const senha = ref('')
 const confirma = ref('')
-
 const endereco = ref('')
 const cidade = ref('')
-
 const mostrar = ref(false)
 
 function formatarPreco(preco) {
@@ -121,7 +119,7 @@ function formatarPreco(preco) {
                 <button @click="limparCarrinho" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                   Fechar
                 </button>
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">
+                <button   @click="mostrar = !mostrar" type="button" class="btn btn-warning" data-bs-dismiss="modal">
                   concluido
                 </button>
               </div>
