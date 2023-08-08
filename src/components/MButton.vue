@@ -6,9 +6,9 @@ const props = defineProps({
 
 <template>
   <button>
-  <slot>
-  {{ props.text }}
-  </slot>
+    <slot>
+      {{ props.text }}
+    </slot>
   </button>
 </template>
 

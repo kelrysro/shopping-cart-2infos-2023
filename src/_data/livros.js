@@ -82,8 +82,7 @@ export const livros = [
     author: 'J. R. R. Tolkien',
     price: 39.9,
     img: 'https://m.media-amazon.com/images/I/91M9xPIf10L._AC_UL320_.jpg'
-  }
-  ,
+  },
   {
     id: 1,
     title: 'O Poderoso Chefão',

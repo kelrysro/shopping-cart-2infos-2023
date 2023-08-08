@@ -6,11 +6,9 @@ import MeuCarrinho from '@/components/MeuCarrinho.vue'
 <template>
   <h1>Minha livraria</h1>
   <div class="container-geral">
-  
     <listagem-livros />
     <meu-carrinho />
   </div>
-  
 </template>
 
 <style scoped>
@@ -18,5 +16,4 @@ import MeuCarrinho from '@/components/MeuCarrinho.vue'
   display: grid;
   grid-template-columns: 3fr 1fr;
 }
-
 </style>
