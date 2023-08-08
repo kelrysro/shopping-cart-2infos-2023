@@ -109,9 +109,8 @@ function formatarPreco(preco) {
 
                       <br />
 
-                      
                     </form>
-                    <template> </template>
+                    
                   </div>
                 </form>
               </div>
